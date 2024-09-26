@@ -49,7 +49,7 @@ namespace IS_lab01
                 ListBoxLab2.Items.Add($"P: {_cryptLogic.P}");
                 ListBoxLab2.Items.Add($"Q: {_cryptLogic.Q}");
                 ListBoxLab2.Items.Add($"Public key (e, n): ({_cryptLogic.E}, {_cryptLogic.N})");
-                ListBoxLab2.Items.Add($"Private key (d): ({_cryptLogic.D})");
+                ListBoxLab2.Items.Add($"Private key (d, y): ({_cryptLogic.D}, {_cryptLogic.Y})");
                 ListBoxLab2.Items.Add($"Encrypted file: {encryptedFilePath}");
                 ListBoxLab2.Items.Add($"Decrypted file: {decryptedFilePath}");
                 ListBox2Lab2.Items.Add($"Encrypted text: {encryptedMessage}");

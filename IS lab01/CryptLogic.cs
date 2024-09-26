@@ -6,13 +6,15 @@ namespace IS_lab01
 {
     public class CryptLogic
     {
-        private BigInteger p, q, n, phi, e, d;
+        private BigInteger p, q, n, phi, e, d, y;
         private readonly int minBits = 12;
         public BigInteger P { get => p; }
         public BigInteger Q { get => q; }
         public BigInteger N { get => n; }
         public BigInteger E { get => e; }
         public BigInteger D { get => d; }
+        
+        public BigInteger Y { get => y; }
 
         private readonly RandomNumberGenerator rng = RandomNumberGenerator.Create();
         public CryptLogic()
@@ -70,7 +72,7 @@ namespace IS_lab01
         }
         private BigInteger CalculateD()
         {
-            BigInteger d, x, y;
+            BigInteger d, x;
             ExtendedEuclideanAlgorithm(e, phi, out d, out x, out y);
             return (d % phi + phi) % phi;
         }
