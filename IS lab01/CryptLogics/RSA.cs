@@ -1,10 +1,9 @@
 ﻿using System.Numerics;
 using System.Security.Cryptography;
 
-
-namespace IS_lab01
+namespace CryptLogic
 {
-    public class CryptLogic
+    public class RSA
     {
         private BigInteger p, q, n, phi, e, d, y;
         private readonly int minBits = 12;
@@ -13,31 +12,15 @@ namespace IS_lab01
         public BigInteger N { get => n; }
         public BigInteger E { get => e; }
         public BigInteger D { get => d; }
-        
         public BigInteger Y { get => y; }
 
         private readonly RandomNumberGenerator rng = RandomNumberGenerator.Create();
-        public CryptLogic()
+        public RSA()
         {
             GeneratePrimes();
             CalculateKeys();
         }
-        public string CaesarCipher(string input, int shift)
-        {
-            char[] buffer = input.ToCharArray();
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                char letter = buffer[i];
-                if (char.IsLetter(letter))
-                {
-                    char d = char.IsUpper(letter) ? 'A' : 'a';
-                    letter = (char)((((letter + shift) - d + 26) % 26) + d);
-                    buffer[i] = letter;
-                }
-            }
-            return new string(buffer);
-        }
-        
+
         private static bool IsPrime(BigInteger number)
         {
             if (number % 2 == 0) return false;

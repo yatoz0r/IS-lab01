@@ -14,7 +14,7 @@
                 <ScrollViewer x:Name="PART_ContentHost"/>
             </Border>
         </ControlTemplate>
-        <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+        <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}" >
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
@@ -84,7 +84,7 @@
                     <Canvas>
                         <Label Content="Шифрование RSA" Canvas.Left="10"/>
                         <Label Content="Укажите путь до файла:" Canvas.Left="10" Canvas.Top="20"/>
-                        <Button x:Name="ButtonChooseFileLab2" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45" />
+                        <Button  x:Name="ButtonChooseFileLab2" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45" />
                         <Label Content="Значение переменных:" Canvas.Left="10" Canvas.Top="65"/>
                         <ListBox x:Name="ListBoxLab2" Canvas.Left="15" Canvas.Top="85"/>
                         <Label Content="Encrypt/Decrypt text in files:" Canvas.Left="10" Canvas.Top="225"/>
