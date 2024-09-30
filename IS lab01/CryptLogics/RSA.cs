@@ -21,7 +21,7 @@ namespace CryptLogic
             CalculateKeys();
         }
 
-        private static bool IsPrime(BigInteger number)
+        private bool IsPrime(BigInteger number)
         {
             if (number % 2 == 0) return false;
 

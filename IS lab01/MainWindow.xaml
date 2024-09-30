@@ -93,7 +93,16 @@
                 </TabItem>
 
                 <TabItem Name="Lab3" Header="Лаб.3" Margin="0,8,0,-8" Style="{StaticResource TabItemStyle}" Width="80" Height="20">
-                   
+                    <Canvas>
+                        <Label Content="Шифрование Deffie - Hellman" Canvas.Left="10"/>
+                        <Label Content="Укажите путь до файла:" Canvas.Left="10" Canvas.Top="20"/>
+                        <Button  x:Name="ButtonChooseFileLab3" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45" />
+                        <Label Content="Значение переменных:" Canvas.Left="10" Canvas.Top="65"/>
+                        <ListBox x:Name="ListBoxLab3" Canvas.Left="15" Canvas.Top="85"/>
+                        <Label Content="Encrypt/Decrypt text in files:" Canvas.Left="10" Canvas.Top="225"/>
+                        <ListBox x:Name="ListBox2Lab3" Canvas.Left="10" Canvas.Top="245"/>
+                    </Canvas>
+
                 </TabItem>
             </TabControl>
         </Grid>
