@@ -104,6 +104,13 @@
                     </Canvas>
 
                 </TabItem>
+                <TabItem Name="Lab4" Header="Лаб.4" Margin="0,12,0,-12" Style="{StaticResource TabItemStyle}" Width="80" Height="20">
+                    <Canvas>
+                        <Label Content="Блочное шифрование бинарного файла" Canvas.Left="10"/>
+                        <Label Content="Укажите путь до файла:" Canvas.Left="10" Canvas.Top="20"/>
+                        <Button  x:Name="ButtonChooseFileLab4" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45"/>
+                    </Canvas>
+                </TabItem>
             </TabControl>
         </Grid>
     </Border>
