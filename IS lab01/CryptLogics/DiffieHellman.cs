@@ -99,7 +99,7 @@ namespace CryptLogics
 
             foreach (char c in plaintext)
             {
-                BigInteger encryptedChar = BigInteger.Multiply((BigInteger)c, _privateKey) * (BigInteger)tangent;
+                BigInteger encryptedChar = BigInteger.Multiply((BigInteger)c, _privateKey)/* * (BigInteger)tangent*/;
                 ciphertext += encryptedChar.ToString() + " ";
             }
 
@@ -110,11 +110,11 @@ namespace CryptLogics
         {
             string plaintext = "";
             string[] encryptedChars = ciphertext.Trim().Split(' ');
-            double tangent = Math.Tan((double)_privateKey);
+            double tangent = Math.Tan((double)_privateKey); 
             foreach (string encryptedChar in encryptedChars)
             {
                 BigInteger bigInt = BigInteger.Parse(encryptedChar);
-                char c = (char)((double)BigInteger.Divide(bigInt, _privateKey) / tangent);
+                char c = (char)(/*(double)*/BigInteger.Divide(bigInt, _privateKey) /*/ tangent*/);
                 plaintext += c;
             }
 
