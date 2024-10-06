@@ -1,6 +1,5 @@
-﻿using System.IO;
-using System.Security.Cryptography;
-
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace IS_lab01.CryptLogics
 {
@@ -8,75 +7,75 @@ namespace IS_lab01.CryptLogics
     {
         private const int BLOCK_SIZE = 4; // 32 bits = 4 bytes
         private const int KEY_SIZE = 4; // 32 bits = 4 bytes
+        public byte[] Encrypted { get; set; }
+        public byte[] Decrypted { get; set; }
         private readonly RandomNumberGenerator rng = RandomNumberGenerator.Create();
-        public byte[] GenerateKey()
+        private readonly byte[] _key = new byte[KEY_SIZE];
+
+        public string GetKey()
         {
-             byte[] key = new byte[KEY_SIZE];
-             rng.GetBytes(key);
-             return key;
+            string keyString = Convert.ToBase64String(_key);
+            return keyString;
         }
-        public byte[] Encrypt(byte[] fileBytes, byte[] key)
+
+        public void GenerateKey()
         {
-            if (key.Length != KEY_SIZE)
-                throw new ArgumentException("Key must be 32 bits (4 bytes) long.");
+            rng.GetBytes(_key);
+        }
 
-            byte[] paddedInput = PadInput(fileBytes);
-            byte[] output = new byte[paddedInput.Length];
+        public string Encrypt(string input)
+        {
+            if (_key.Length != KEY_SIZE)
+                throw new ArgumentException($"Key must be {KEY_SIZE} bytes long.");
 
-            for (int i = 0; i < paddedInput.Length; i += BLOCK_SIZE)
+            // Convert input string to byte array
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+            int padding = BLOCK_SIZE - (inputBytes.Length % BLOCK_SIZE);
+            byte[] paddedInputBytes = new byte[inputBytes.Length + padding];
+            Array.Copy(inputBytes, paddedInputBytes, inputBytes.Length);
+
+            // Padding with zeros
+            for (int i = inputBytes.Length; i < paddedInputBytes.Length; i++)
+            {
+                paddedInputBytes[i] = 0;
+            }
+
+            byte[] encryptedBytes = new byte[paddedInputBytes.Length];
+
+            for (int i = 0; i < paddedInputBytes.Length; i += BLOCK_SIZE)
             {
                 for (int j = 0; j < BLOCK_SIZE; j++)
                 {
-                    output[i + j] = (byte)(paddedInput[i + j] ^ key[j]);
+                    encryptedBytes[i + j] = (byte)(paddedInputBytes[i + j] ^ _key[j]);
                 }
             }
+            Encrypted = encryptedBytes;
 
-            return output;
+            // Convert encrypted bytes to a base64 string
+            return Convert.ToBase64String(encryptedBytes);
         }
 
-        public byte[] Decrypt(byte[] encryptedBytes, byte[] key)
+        public string Decrypt(string encryptedInput)
         {
-            if (key.Length != KEY_SIZE)
-                throw new ArgumentException("Key must be 32 bits (4 bytes) long.");
+            if (_key.Length != KEY_SIZE)
+                throw new ArgumentException($"Key must be {KEY_SIZE} bytes long.");
 
-            return Encrypt(encryptedBytes, key); // XOR is symmetric, so encryption is the same as decryption
-        }
+            // Convert encrypted base64 string to byte array
+            byte[] encryptedBytes = Convert.FromBase64String(encryptedInput);
 
-        private byte[] PadInput(byte[] input)
-        {
-            int paddingLength = BLOCK_SIZE - (input.Length % BLOCK_SIZE);
-            if (paddingLength == 0) paddingLength = BLOCK_SIZE;
+            byte[] decryptedBytes = new byte[encryptedBytes.Length];
 
-            byte[] paddedInput = new byte[input.Length + paddingLength];
-            Array.Copy(input, paddedInput, input.Length);
-
-            // PKCS7 padding
-            for (int i = input.Length; i < paddedInput.Length; i++)
+            for (int i = 0; i < encryptedBytes.Length; i += BLOCK_SIZE)
             {
-                paddedInput[i] = (byte)paddingLength;
+                for (int j = 0; j < BLOCK_SIZE; j++)
+                {
+                    decryptedBytes[i + j] = (byte)(encryptedBytes[i + j] ^ _key[j]);
+                }
             }
+            Decrypted = decryptedBytes;
 
-            return paddedInput;
-        }
-
-        private byte[] RemovePadding(byte[] input)
-        {
-            int paddingLength = input[input.Length - 1];
-            return input.Take(input.Length - paddingLength).ToArray();
-        }
-
-        public void EncryptFile(string inputFile, string outputFile, byte[] key)
-        {
-            byte[] fileBytes = File.ReadAllBytes(inputFile);
-            byte[] encryptedBytes = Encrypt(fileBytes, key);
-            File.WriteAllBytes(outputFile, encryptedBytes);
-        }
-
-        public void DecryptFile(string inputFile, string outputFile, byte[] key)
-        {
-            byte[] encryptedBytes = File.ReadAllBytes(inputFile);
-            byte[] decryptedBytes = Decrypt(encryptedBytes, key);
-            File.WriteAllBytes(outputFile, RemovePadding(decryptedBytes));
+            return Encoding.UTF8.GetString(decryptedBytes).TrimEnd('\0');
         }
     }
 }

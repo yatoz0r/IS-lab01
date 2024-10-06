@@ -10,6 +10,7 @@ namespace IS_lab01
     {
         private ButtonsController _buttonsControllerLab2;
         private ButtonsController _buttonsControllerLab3;
+        private ButtonsController _buttonsControllerLab4;
         private TextBoxController _textBoxController;
         public MainWindow()
         {
@@ -20,11 +21,13 @@ namespace IS_lab01
             };
             _buttonsControllerLab2 = new ButtonsController(ListBoxLab2, ListBox2Lab2);
             _buttonsControllerLab3 = new ButtonsController(ListBoxLab3, ListBox2Lab3);
+            _buttonsControllerLab4 = new ButtonsController(ListBoxLab4, ListBox2Lab4);
             _textBoxController = new TextBoxController(ComboBox1, InputTextBoxLab1, EncryptedString, DecryptedString);
             ComboBox1.ItemsSource = listKCeaser;
             InputTextBoxLab1.KeyDown += _textBoxController.InputTextBoxLab1KeyDown;
             ButtonChooseFileLab2.Click += _buttonsControllerLab2.ButtonChooseFileLab2_Click;
             ButtonChooseFileLab3.Click += _buttonsControllerLab3.ButtonChooseFileLab3_Click;
+            ButtonChooseFileLab4.Click += _buttonsControllerLab4.ButtonChooseFileLab4_Click;
         }
     }
 }
