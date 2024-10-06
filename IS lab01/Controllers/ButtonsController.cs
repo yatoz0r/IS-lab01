@@ -2,8 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using CryptLogic;
-using CryptLogics;
+using IS_lab01.CryptLogics;
 
 namespace Controllers
 {
@@ -22,7 +21,7 @@ namespace Controllers
         {
             OpenFileDialog openFileDlg = new OpenFileDialog();
 
-            Nullable<bool> result = openFileDlg.ShowDialog();
+            bool? result = openFileDlg.ShowDialog();
             if (result == true)
             {
                 var input = File.ReadAllText(openFileDlg.FileName);
@@ -46,7 +45,7 @@ namespace Controllers
         {
             OpenFileDialog openFileDlg = new OpenFileDialog();
 
-            Nullable<bool> result = openFileDlg.ShowDialog();
+            bool? result = openFileDlg.ShowDialog();
             if (result == true)
             {
                 var input = File.ReadAllText(openFileDlg.FileName);
@@ -64,6 +63,17 @@ namespace Controllers
                 ListBox1.Items.Add($"Decrypted file: {decryptedFilePath}");
                 ListBox2.Items.Add($"Encrypted text: {encryptedMessage}");
                 ListBox2.Items.Add($"Decrypted text: {decryptedMessage}");
+            }
+        }
+
+        public void ButtonChooseFileLab4_Cick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDlg = new OpenFileDialog();
+
+            bool? result = openFileDlg.ShowDialog();
+            if(result == true)
+            {
+
             }
         }
     }

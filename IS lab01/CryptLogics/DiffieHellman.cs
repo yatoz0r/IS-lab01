@@ -2,7 +2,7 @@
 using System.Numerics;
 using System.Security.Cryptography;
 
-namespace CryptLogics
+namespace IS_lab01.CryptLogics
 {
     public class DiffieHellman
     {

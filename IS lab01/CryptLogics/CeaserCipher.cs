@@ -1,5 +1,5 @@
 ﻿
-namespace CryptLogic
+namespace IS_lab01.CryptLogics
 {
     public class CeaserCipher
     {

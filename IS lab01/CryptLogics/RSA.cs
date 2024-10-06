@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Security.Cryptography;
 
-namespace CryptLogic
+namespace IS_lab01.CryptLogics
 {
     public class RSA
     {

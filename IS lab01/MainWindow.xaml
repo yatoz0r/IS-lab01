@@ -109,6 +109,10 @@
                         <Label Content="Блочное шифрование бинарного файла" Canvas.Left="10"/>
                         <Label Content="Укажите путь до файла:" Canvas.Left="10" Canvas.Top="20"/>
                         <Button  x:Name="ButtonChooseFileLab4" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45"/>
+                        <Label Content="Значение переменных:" Canvas.Left="10" Canvas.Top="65"/>
+                        <ListBox x:Name="ListBoxLab4" Canvas.Left="15" Canvas.Top="85"/>
+                        <Label Content="Encrypt/Decrypt text in files:" Canvas.Left="10" Canvas.Top="225"/>
+                        <ListBox x:Name="ListBox2Lab4" Canvas.Left="10" Canvas.Top="245"/>
                     </Canvas>
                 </TabItem>
             </TabControl>

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using CryptLogic;
+using IS_lab01.CryptLogics;
 
 namespace Controllers
 {
