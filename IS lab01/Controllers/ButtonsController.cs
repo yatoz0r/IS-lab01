@@ -85,11 +85,13 @@ namespace Controllers
                 File.WriteAllText(encryptedFilePath, encryptedMessage);
                 File.WriteAllText(decryptedFilePath, decryptedMessage);
                 ListBox1.Items.Add($"Key(string): {_blockEncrypt.GetKey()}");
-                ListBox1.Items.Add($"Key(byte): {BitConverter.ToString(_blockEncrypt.Decrypted).Replace("-", " ")}");
+                ListBox1.Items.Add($"Key(Hex): {BitConverter.ToString(_blockEncrypt.Key).Replace("-", " ")}");
+                ListBox1.Items.Add($"Key(bin): {_blockEncrypt.ByteArrayToBinaryString(_blockEncrypt.Key)}");
                 ListBox1.Items.Add($"Encrypted file: {encryptedFilePath}");
                 ListBox1.Items.Add($"Decrypted file: {decryptedFilePath}");
                 ListBox2.Items.Add($"Encrypted text(string): {encryptedMessage}");
-                ListBox2.Items.Add($"Encrypted text(byte): {BitConverter.ToString(_blockEncrypt.Encrypted).Replace("-", " ")}");
+                ListBox2.Items.Add($"Encrypted text(Hex): {BitConverter.ToString(_blockEncrypt.Encrypted).Replace("-", " ")}");
+                ListBox2.Items.Add($"Encrypted text(bin): {_blockEncrypt.ByteArrayToBinaryString(_blockEncrypt.Encrypted)}");
                 ListBox2.Items.Add($"Decrypted text: {decryptedMessage}");
             }
         }
