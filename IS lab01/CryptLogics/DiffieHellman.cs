@@ -64,34 +64,6 @@ namespace IS_lab01.CryptLogics
 
             return prime;
         }
-        /* public string Encrypt(string plaintext)
-         {
-             string ciphertext = "";
-
-             foreach (char c in plaintext)
-             {
-                 double tangent = Math.Tan(c);
-                 BigInteger encryptedChar = (BigInteger)(tangent * (double)_privateKey);
-                 ciphertext += encryptedChar.ToString() + " ";
-             }
-
-             return ciphertext;
-         }
-         public string Decrypt(string ciphertext)
-         {
-             string plaintext = "";
-             string[] encryptedChars = ciphertext.Trim().Split(' ');
-
-             foreach (string encryptedChar in encryptedChars)
-             {
-                 BigInteger bigInt = BigInteger.Parse(encryptedChar);
-                 double tangent = (double)bigInt / (double)_privateKey;
-                 char c = (char)Math.Round(Math.Atan(tangent));
-                 plaintext += c;
-             }
-
-             return plaintext;
-         }*/
         public string Encrypt(string plaintext)
         {
             string ciphertext = "";

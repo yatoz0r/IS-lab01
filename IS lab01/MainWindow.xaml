@@ -99,8 +99,8 @@
                         <Button  x:Name="ButtonChooseFileLab3" Content="Файл для шифровки" Canvas.Left="15" Canvas.Top="45" />
                         <Label Content="Значение переменных:" Canvas.Left="10" Canvas.Top="65"/>
                         <ListBox x:Name="ListBoxLab3" Canvas.Left="15" Canvas.Top="85"/>
-                        <Label Content="Encrypt/Decrypt text in files:" Canvas.Left="10" Canvas.Top="225"/>
-                        <ListBox x:Name="ListBox2Lab3" Canvas.Left="10" Canvas.Top="245"/>
+                        <Label Content="Encrypt/Decrypt text in files:" Canvas.Left="10" Canvas.Top="245"/>
+                        <ListBox x:Name="ListBox2Lab3" Canvas.Left="10" Canvas.Top="265"/>
                     </Canvas>
 
                 </TabItem>
