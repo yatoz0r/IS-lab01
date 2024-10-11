@@ -11,7 +11,8 @@ namespace IS_lab01.CryptLogics
         public BigInteger Q { get; private set; }
         public BigInteger X { get; private set; }
         public BigInteger Y { get; private set; }
-
+        public BigInteger PrivateKeyA { get; private set; }
+        public BigInteger PrivateKeyB { get; private set; }
         public BigInteger PublicKeyA { get; private set; }
         public BigInteger PublicKeyB { get; private set; }
 
@@ -37,7 +38,9 @@ namespace IS_lab01.CryptLogics
         {
             PublicKeyA = BigInteger.ModPow(Q, X, N);
             PublicKeyB = BigInteger.ModPow(Q, Y, N);
-            _privateKey = BigInteger.ModPow(PublicKeyB, PublicKeyB, N);
+            PrivateKeyA = BigInteger.ModPow(PublicKeyB, X, N);
+            PrivateKeyB = BigInteger.ModPow(PublicKeyA, Y, N);
+            _privateKey = PrivateKeyA;
         }
         private bool IsPrime(BigInteger number)
         {

@@ -57,12 +57,14 @@ namespace Controllers
                 var decryptedFilePath = System.IO.Path.ChangeExtension(openFileDlg.FileName, "_DECRYPTDIFFHELL.txt");
                 File.WriteAllText(encryptedFilePath, encryptedMessage);
                 File.WriteAllText(decryptedFilePath, decryptedMessage);
-                ListBox1.Items.Add($"X: {_diffhell.N}");
-                ListBox1.Items.Add($"Y: {_diffhell.Q}");
+                ListBox1.Items.Add($"N: {_diffhell.N}");
+                ListBox1.Items.Add($"Q: {_diffhell.Q}");
                 ListBox1.Items.Add($"Public key A: ({_diffhell.PublicKeyA})");
                 ListBox1.Items.Add($"Public key B: ({_diffhell.PublicKeyB})");
-                ListBox1.Items.Add($"Client Private A: ({_diffhell.X})");
-                ListBox1.Items.Add($"Client Private B: ({_diffhell.Y})");
+                ListBox1.Items.Add($"X: ({_diffhell.X})");
+                ListBox1.Items.Add($"Y: ({_diffhell.Y})");
+                ListBox1.Items.Add($"Client Private A - {_diffhell.PrivateKeyA}");
+                ListBox1.Items.Add($"Client Private B - {_diffhell.PrivateKeyB}");
                 ListBox1.Items.Add($"Private key: ({_diffhell.PrivateKey})");
                 ListBox1.Items.Add($"Encrypted file: {encryptedFilePath}");
                 ListBox1.Items.Add($"Decrypted file: {decryptedFilePath}");
