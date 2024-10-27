@@ -6,11 +6,11 @@ namespace Controllers
 {
     public class TextBoxController
     {
-        private ComboBox _comboBox1;
-        private TextBox _inputTextBoxLab1;
-        private TextBox _encryptedString;
-        private TextBox _decryptedString;
-        private CeaserCipher _cc;
+        private ComboBox? _comboBox1;
+        private TextBox? _inputTextBoxLab1;
+        private TextBox? _encryptedString;
+        private TextBox? _decryptedString;
+        private CeaserCipher? _cc;
 
         public TextBoxController(ComboBox comboBox1, TextBox inputTextBoxLab1, TextBox encryptedString, TextBox decryptedString)
         {
@@ -25,9 +25,9 @@ namespace Controllers
             if (key.Key == Key.Enter)
             {
                 var keyComboBox = (int)_comboBox1.SelectedItem;
-                var stringTextBox = _inputTextBoxLab1.Text;
-                _encryptedString.Text = _cc.Encode(stringTextBox, keyComboBox);
-                _decryptedString.Text = _cc.Encode(_encryptedString.Text, -keyComboBox);
+                var stringTextBox = _inputTextBoxLab1?.Text;
+                _encryptedString.Text = _cc?.Encode(stringTextBox, keyComboBox);
+                _decryptedString.Text = _cc?.Encode(_encryptedString.Text, -keyComboBox);
             }
         }
     }

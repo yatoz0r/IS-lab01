@@ -154,6 +154,26 @@
                         <ListBox x:Name="ListBoxLab6" Canvas.Left="15" Canvas.Top="55"/>
                     </Canvas>
                 </TabItem>
+                <TabItem Name="Lab7" Header="Лаб.7" Margin="0,24,0,-24" Style="{StaticResource TabItemStyle}" Width="80" Height="20">
+                    <Canvas>
+                        <Label Content="Хеширование пароля" Canvas.Left="10"/>
+                        <Label Content="Введите пароль:" Canvas.Left="10" Canvas.Top="20"/>
+                        <TextBox x:Name="InputPassword" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="40" Width="250"/>
+                        <Button x:Name="ButtonConfirmPassword1" Content="Хешировать" Canvas.Left="270" Canvas.Top="40" Style="{StaticResource RoundButtonStyle}"/>
+                        <TextBox x:Name="HashPassword" IsReadOnly="True" Canvas.Left="10" Canvas.Top="65" TextWrapping="Wrap" Width="600"/>
+                        <Label Content="Введиет пароль для проверки" Canvas.Left="10" Canvas.Top="85"/>
+                        <TextBox x:Name="CheckPassword" Canvas.Left="10" Canvas.Top="105" TextWrapping="Wrap"  Width="250"/>
+                        <Button x:Name="ButtonConfirmPassword2" Content="Проверить" Canvas.Left="270" Canvas.Top="105" Style="{StaticResource RoundButtonStyle}"/>
+                        <TextBox x:Name="Checker" IsReadOnly="True" Canvas.Left="10" Canvas.Top="125" Width="150"/>
+                    </Canvas>
+                </TabItem>
+                <TabItem Name="Lab8" Header="Лаб.8" Margin="0,28,0,-28" Style="{StaticResource TabItemStyle}" Width="80" Height="20">
+                    <Canvas>
+                        <Label Content="Гамма шифрование" Canvas.Left="10"/>
+                        <Button x:Name="ButtonLab8" Content="Выполнить алгоритм" Canvas.Left="10" Canvas.Top="25" Style="{StaticResource RoundButtonStyle}"/>
+                        <TextBox x:Name="TextBoxLab8" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="55" Width="400"/>
+                    </Canvas>
+                </TabItem>
             </TabControl>
         </Grid>
     </Border>

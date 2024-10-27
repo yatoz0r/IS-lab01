@@ -13,6 +13,8 @@ namespace IS_lab01
         private ButtonsController _buttonsControllerLab4;
         private ButtonsController _buttonsControllerLab5;
         private ButtonsController _buttonsControllerLab6;
+        private ButtonsController _buttonsControllerLab7;
+        private ButtonsController _buttonsControllerLab8;
         private TextBoxController _textBoxController;
         public MainWindow()
         {
@@ -26,6 +28,8 @@ namespace IS_lab01
             _buttonsControllerLab4 = new ButtonsController(ListBoxLab4, ListBox2Lab4);
             _buttonsControllerLab5 = new ButtonsController(RichTextBox1);
             _buttonsControllerLab6 = new ButtonsController(ListBoxLab6);
+            _buttonsControllerLab7 = new ButtonsController(InputPassword, HashPassword, CheckPassword, Checker);
+            _buttonsControllerLab8 = new ButtonsController(TextBoxLab8);
             _textBoxController = new TextBoxController(ComboBox1, InputTextBoxLab1, EncryptedString, DecryptedString);
             ComboBox1.ItemsSource = listKCeaser;
             InputTextBoxLab1.KeyDown += _textBoxController.InputTextBoxLab1KeyDown;
@@ -34,6 +38,9 @@ namespace IS_lab01
             ButtonChooseFileLab4.Click += _buttonsControllerLab4.ButtonChooseFileLab4_Click;
             ButtonToExecuteLab5.Click += _buttonsControllerLab5.ButtonToExecuteLab5_Click;
             ButtonToExecuteLab6.Click += _buttonsControllerLab6.ButtonToExecuteLab6_Click;
+            ButtonConfirmPassword1.Click += _buttonsControllerLab7.ButtonConfirmPassword1_Click;
+            ButtonConfirmPassword2.Click += _buttonsControllerLab7.ButtonConfirmPassword2_Click;
+            ButtonLab8.Click += _buttonsControllerLab8.ButtonLab8_Click;
         }
     }
 }
