@@ -18,10 +18,12 @@ namespace IS_lab01.CryptLogics
             string keyString = Convert.ToBase64String(_key);
             return keyString;
         }
+        
         public string ByteArrayToBinaryString(byte[] bytes)
         {
             return string.Join("", bytes.Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
         }
+        
         public void GenerateKey()
         {
             rng.GetBytes(_key);

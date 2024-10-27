@@ -42,6 +42,7 @@ namespace IS_lab01.CryptLogics
             PrivateKeyB = BigInteger.ModPow(PublicKeyA, Y, N);
             _privateKey = PrivateKeyA;
         }
+        
         private bool IsPrime(BigInteger number)
         {
             if (number % 2 == 0) return false;
@@ -52,6 +53,7 @@ namespace IS_lab01.CryptLogics
 
             return true;
         }
+        
         private BigInteger GenerateRandomNumber()
         {
             BigInteger prime;
@@ -68,6 +70,7 @@ namespace IS_lab01.CryptLogics
 
             return prime;
         }
+        
         public string Encrypt(string plaintext)
         {
             string ciphertext = "";

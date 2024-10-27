@@ -31,6 +31,7 @@ namespace IS_lab01.CryptLogics
 
             return true;
         }
+        
         public BigInteger GenerateRandomNumber()
         {
             BigInteger prime;
@@ -47,18 +48,21 @@ namespace IS_lab01.CryptLogics
 
             return prime;
         }
+       
         private void GeneratePrimes()
         {
             p = GenerateRandomNumber();
 
             q = GenerateRandomNumber();
         }
+        
         private BigInteger CalculateD()
         {
             BigInteger d, x;
             ExtendedEuclideanAlgorithm(e, phi, out d, out x, out y);
             return (d % phi + phi) % phi;
         }
+        
         private void CalculateKeys()
         {
             n = p * q;
@@ -70,6 +74,7 @@ namespace IS_lab01.CryptLogics
             }
             d = CalculateD();
         }
+        
         private void ExtendedEuclideanAlgorithm(BigInteger a, BigInteger b, out BigInteger x, out BigInteger y, out BigInteger gcd)
         {
             if (a == 0)

@@ -90,17 +90,15 @@ namespace IS_lab01.CryptLogics
             return -1; // Error not found
         }
 
-        // Method to generate random data
         public int GenerateRandomData(int length)
         {
-            return random.Next(0, (1 << length)); // Generate random data of specified length
+            return random.Next(0, (1 << length));
         }
 
-        // Method to introduce random errors
         public int IntroduceRandomError(int data)
         {
             int errorPosition = random.Next(0, CodeLength);
-            return data ^ (1 << errorPosition); // Introduce error at random position
+            return data ^ (1 << errorPosition);
         }
     }
     public class DecodeResult

@@ -148,35 +148,45 @@ namespace Controllers
 
         public void ButtonToExecuteLab6_Click(object sender, RoutedEventArgs e)
         {
-            var inputFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\123.txt";
-            var outputFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\outputTest.txt";
+            string inputFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\123.txt";
+            string compressedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\output_rlehuff.txt";
+            string decompressedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\decompressed.txt";
 
-            // Чтение файла
-            string input = File.ReadAllText(inputFile);
-            ListBox1.Items.Add("Оригинальный текст: " + input);
+            // Чтение исходного файла
+            Console.WriteLine("Чтение исходного файла...");
+            byte[] originalData = File.ReadAllBytes(inputFile);
+            ListBox1.Items.Add($"Размер исходного файла: {_huffman.FormatFileSize(originalData.Length)}");
+            
+            // Этап 1: RLE сжатие
+            ListBox1.Items.Add("\n--- Этап 1: RLE сжатие ---");
+            byte[] rleCompressed = _rle.RLECompress(originalData);
+            ListBox1.Items.Add("Файл успешно сжат");
 
-            // Сжатие RLE
-            string rleCompressed = _rle.RLECompress(input);
-            ListBox1.Items.Add("RLE Compressed: " + rleCompressed);
-            // Сжатие Хаффмана
-            var huffmanCodes = Huffman.BuildHuffmanTree(rleCompressed);
-            string huffmanCompressed = Huffman.HuffmanCompress(rleCompressed);
-            ListBox1.Items.Add("Huffman Compressed: " + huffmanCompressed);
+            // Этап 2: Хаффман сжатие
+            ListBox1.Items.Add("\n--- Этап 2: Сжатие Хаффмана ---");
+            byte[] huffmanCompressed = _huffman.HuffmanCompress(rleCompressed);
+            File.WriteAllBytes(compressedFile, huffmanCompressed);
+            ListBox1.Items.Add($"Финальный размер сжатого файла: {_huffman.FormatFileSize(huffmanCompressed.Length)}");
+            ListBox1.Items.Add($"Общая степень сжатия: {(double)originalData.Length / huffmanCompressed.Length:F2}x");
 
-            // Запись сжатых данных в файл
-            File.WriteAllText(outputFile, huffmanCompressed);
-            ListBox1.Items.Add("Сжатые данные записаны");
-            // Чтение сжатых данных из файла
-            string compressedData = File.ReadAllText(outputFile);
-            ListBox1.Items.Add("Сжатые данные из файла: " + compressedData);
+            // Этап 3: Хаффман расжатие
+            ListBox1.Items.Add("\n--- Этап 3: Расжатие Хаффмана ---");
+            byte[] huffmanDecompressed = _huffman.HuffmanDecompress(huffmanCompressed);
+            ListBox1.Items.Add($"Файл расжат без ошибок");
 
-            // Распаковка Хаффмана
-            string huffmanDecompressed = Huffman.HuffmanDecompress(compressedData, huffmanCodes);
-            ListBox1.Items.Add("Huffman Decompressed: " + huffmanDecompressed);
+            // Этап 4: RLE расжатие
+            ListBox1.Items.Add("\n--- Этап 4: RLE расжатие ---");
+            byte[] finalDecompressed = _rle.RLEDecompress(huffmanDecompressed);
+            File.WriteAllBytes(decompressedFile, finalDecompressed);
+            ListBox1.Items.Add($"Финальный размер расжатого файла: {_huffman.FormatFileSize(finalDecompressed.Length)}");
 
-            // Распаковка RLE
-            string rleDecompressed = _rle.RLEDecompress(huffmanDecompressed);
-            ListBox1.Items.Add("RLE Decompressed: " + rleDecompressed);
+            // Проверка корректности
+            bool success = _huffman.CompareFiles(originalData, finalDecompressed);
+            ListBox1.Items.Add("\n=== Результаты ===");
+            ListBox1.Items.Add($"Сжатие и расжатие выполнено {(success ? "успешно" : "с ошибками")}");
+            ListBox1.Items.Add($"Исходный файл: {inputFile}");
+            ListBox1.Items.Add($"Сжатый файл: {compressedFile}");
+            ListBox1.Items.Add($"Расжатый файл: {decompressedFile}");
         }
     }
 }

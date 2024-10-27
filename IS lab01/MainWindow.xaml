@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:IS_lab01"
         mc:Ignorable="d"
         Title="Защита Информации"
-        Height="960" Width="800"
+        Height="720" Width="1240"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ControlTemplate x:Key="RoundTextBox" TargetType="{x:Type TextBox}">
@@ -139,8 +140,8 @@
                 </TabItem>
                 <TabItem Name="Lab5" Header="Лаб.5" Margin="0,16,0,-16" Style="{StaticResource TabItemStyle}" Width="80" Height="20">
                     <Grid>
-                        <Label Content="Шифры обнаружения и коррекции ошибок" Width="300" HorizontalAlignment="Left" Margin="10,2,0,850"/>
-                        <Button x:Name="ButtonToExecuteLab5" Content="Выполнить алгоритм" HorizontalAlignment="Left" Margin="10,10,0,839" Style="{StaticResource RoundButtonStyle}"/>
+                        <Label Content="Шифры обнаружения и коррекции ошибок" Width="300" HorizontalAlignment="Left" Margin="10,-6,0,615"/>
+                        <Button x:Name="ButtonToExecuteLab5" Content="Выполнить алгоритм" HorizontalAlignment="Left" Margin="10,10,0,587" Style="{StaticResource RoundButtonStyle}"/>
                         <ScrollViewer Margin="10,70,10,31" VerticalScrollBarVisibility="Disabled">
                             <RichTextBox x:Name="RichTextBox1" Width="Auto" Height="872" AutomationProperties.IsOffscreenBehavior="Onscreen" ClipToBounds="True" IsReadOnly="True" />
                         </ScrollViewer>
