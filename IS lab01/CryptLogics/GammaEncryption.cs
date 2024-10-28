@@ -50,21 +50,6 @@ namespace IS_lab01.CryptLogics
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
             File.WriteAllText(outputFile, decryptedText);
         }
-        private ulong ModularMultiplicativeInverse(ulong value, ulong modulus)
-        {
-            ulong a = value;
-            ulong b = modulus;
-            ulong x = 1;
-            ulong y = 0;
-
-            while (b > 0)
-            {
-                ulong quotient = a / b;
-                (a, b) = (b, a % b);
-                (x, y) = (y, x - quotient * y);
-            }
-
-            return (x % modulus + modulus) % modulus;
-        }
+       
     }
 }

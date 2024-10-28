@@ -164,9 +164,9 @@ namespace Controllers
 
         public void ButtonToExecuteLab6_Click(object sender, RoutedEventArgs e)
         {
-            string inputFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\123.txt";
-            string compressedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\output_rlehuff.txt";
-            string decompressedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\decompressed.txt";
+            string inputFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\123.txt";
+            string compressedFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\output_rlehuff.txt";
+            string decompressedFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\decompressed.txt";
 
             Console.WriteLine("Чтение исходного файла...");
             byte[] originalData = File.ReadAllBytes(inputFile);
@@ -213,10 +213,11 @@ namespace Controllers
 
         public void ButtonLab8_Click(object sender, RoutedEventArgs e)
         {
-            string inputFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\123.txt";
-            string encryptedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\encryptedGamma.txt";
-            string encryptedFileGamma = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\encryptedGamma.txt.gamma";
-            string decryptedFile = "C:\\Users\\yatoz\\source\\repos\\IS lab01\\text files\\decryptedGamma.txt";
+
+            string inputFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\123.txt";
+            string encryptedFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\encryptedGamma.txt";
+            string encryptedFileGamma = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\encryptedGamma.txt.gamma";
+            string decryptedFile = "C:\\Users\\User\\source\\repos\\yatoz0r\\IS-lab01\\text files\\decryptedGamma.txt";
             _gamma.EncryptFile(inputFile, encryptedFile);
             _gamma.DecryptFile(encryptedFile, decryptedFile, encryptedFileGamma);
             _textBox1.Text = $"Файл {inputFile} зашифрован \n\n" +
