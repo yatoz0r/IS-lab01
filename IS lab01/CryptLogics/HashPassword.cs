@@ -5,29 +5,32 @@ namespace IS_lab01.CryptLogics
     public class PasswordHasher
     {
         private const int SaltSize = 16;
-        private const int HashSize = 20;
-        private const int Iterations = 10000;
+        private readonly BlockEncrypt _blockEncrypt;
+
+        public PasswordHasher()
+        {
+            _blockEncrypt = new BlockEncrypt();
+            _blockEncrypt.GenerateKey(); // Generate a new key for encryption
+        }
 
         public string HashPassword(string password)
         {
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentException("Password cannot be empty");
 
-            // Создаем соль
+            // Create salt
             byte[] salt = new byte[SaltSize];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-            // Создаем хеш
-            byte[] hash = GetHash(password, salt);
 
-            // Комбинируем соль и хеш
-            byte[] hashBytes = new byte[SaltSize + HashSize];
-            Array.Copy(salt, 0, hashBytes, 0, SaltSize);
-            Array.Copy(hash, 0, hashBytes, SaltSize, HashSize);
+            // Encrypt the password
+            string saltedPassword = Convert.ToBase64String(salt) + password; // Combine salt and password
+            string encryptedPassword = _blockEncrypt.Encrypt(saltedPassword);
 
-            return Convert.ToBase64String(hashBytes);
+            // Combine salt and encrypted password for storage
+            return Convert.ToBase64String(salt) + ":" + encryptedPassword;
         }
 
         public bool VerifyPassword(string password, string hashedPassword)
@@ -37,38 +40,22 @@ namespace IS_lab01.CryptLogics
 
             try
             {
-                // Получаем байты из хешированного пароля
-                byte[] hashBytes = Convert.FromBase64String(hashedPassword);
+                // Split the salt and encrypted password
+                var parts = hashedPassword.Split(':');
+                if (parts.Length != 2) return false;
 
-                // Получаем соль
-                byte[] salt = new byte[SaltSize];
-                Array.Copy(hashBytes, 0, salt, 0, SaltSize);
+                byte[] salt = Convert.FromBase64String(parts[0]);
+                string encryptedPassword = parts[1];
 
-                // Получаем оригинальный хеш
-                byte[] originalHash = new byte[HashSize];
-                Array.Copy(hashBytes, SaltSize, originalHash, 0, HashSize);
+                // Decrypt the stored password
+                string decryptedPassword = _blockEncrypt.Decrypt(encryptedPassword);
 
-                // Вычисляем хеш для введенного пароля
-                byte[] computedHash = GetHash(password, salt);
-
-                // Сравниваем хеши
-                for (int i = 0; i < HashSize; i++)
-                {
-                    if (computedHash[i] != originalHash[i]) return false;
-                }
-                return true;
+                // Compare the original password with the decrypted password
+                return decryptedPassword.Equals(Convert.ToBase64String(salt) + password);
             }
             catch
             {
                 return false;
-            }
-        }
-
-        private byte[] GetHash(string password, byte[] salt)
-        {
-            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations))
-            {
-                return pbkdf2.GetBytes(HashSize);
             }
         }
     }
